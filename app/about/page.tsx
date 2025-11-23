@@ -535,7 +535,6 @@ function StatCard({ stat, index }: { stat: StatConfig; index: number }) {
       variants={fadeInUp}
       transition={{ ...transitionFast, delay: index * 0.05 }}
       whileHover={{ y: -6, scale: 1.02 }}
-      transition={transitionFast}
       style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
       className="group relative flex flex-col gap-6 rounded-3xl border border-white/10 bg-white/5 p-8 text-left shadow-[0_30px_90px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all hover:border-teal-400/30 hover:shadow-[0_40px_120px_rgba(34,211,238,0.2)] transform-gpu"
     >
