@@ -5,20 +5,20 @@ import Image from "next/image";
 
 const affiliations = [
   {
-    title: "United Nation",
-    logo: "/logos/un-logo.png",
+    title: "United Nations",
+    logo: "/affiliations/un-logo.jpeg",
     description:
       "CLNS is affiliated with the United Nations, contributing to global legal frameworks and sustainable development initiatives. This partnership enables us to align our services with international standards and best practices.",
   },
   {
     title: "UIA – Union of International Association",
-    logo: "/logos/uia-logo.png",
+    logo: "/affiliations/uia-logo.jpg",
     description:
       "As a member of the Union of International Associations, CLNS participates in a global network of organizations dedicated to fostering international cooperation and knowledge sharing in the legal domain.",
   },
   {
     title: "FICL – Federation of Indian Corporate Lawyer",
-    logo: "/logos/ficl-logo.png",
+    logo: "/affiliations/ficl-logo.jpeg",
     description:
       "CLNS is proudly affiliated with the Federation of Indian Corporate Lawyers, strengthening our commitment to corporate legal excellence and professional development across India.",
   },
@@ -55,13 +55,15 @@ export default function AffiliationPage() {
               {/* Logo and Content */}
               <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-start">
                 {/* Logo Container */}
-                <div className="flex-shrink-0 rounded-lg border border-white/10 bg-white/10 p-2">
+                <div className="flex-shrink-0 rounded-lg border border-white/10 bg-white/10 p-4">
                   <Image
                     src={item.logo}
                     alt={`${item.title} logo`}
-                    width={40}
-                    height={40}
-                    className="h-10 w-10 object-contain"
+                    width={80}
+                    height={80}
+                    className="h-20 w-20 object-contain"
+                    loading="lazy"
+                    quality={90}
                   />
                 </div>
                 {/* Text Content */}
