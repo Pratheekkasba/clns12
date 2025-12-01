@@ -309,17 +309,57 @@ const advocateProcess = [
 ];
 
 const startupProcess = [
-  { step: 1, title: "Download CLNS App", description: "Get started by downloading the CLNS app from Play Store or App Store.", image: "/process/startups-download-alt.jpeg" },
-  { step: 2, title: "Register", description: "Create your startup account and provide business details.", image: "/process/startups-register.jpeg" },
-  { step: 3, title: "Pay ₹1 Rupee", description: "Access legal consultation for just ₹1 with our One-Rupee initiative.", image: "/process/startups-pay.jpeg" },
-  { step: 4, title: "Connect to Lawyer", description: "Get matched with legal experts specialized in startup compliance.", image: "/process/startups-connect.jpeg" },
+  {
+    step: 1,
+    title: "Download CLNS App",
+    description: "Get started by downloading the CLNS app from Play Store or App Store.",
+    image: "/process/clients-download.jpeg",
+  },
+  {
+    step: 2,
+    title: "Register",
+    description: "Create your startup account and provide business details.",
+    image: "/process/clients-register.jpeg",
+  },
+  {
+    step: 3,
+    title: "Pay ₹1 Rupee",
+    description: "Access legal consultation for just ₹1 with our One-Rupee initiative.",
+    image: "/process/clients-pay.jpeg",
+  },
+  {
+    step: 4,
+    title: "Connect to Lawyer",
+    description: "Get matched with legal experts specialized in startup compliance.",
+    image: "/process/clients-connect.jpeg",
+  },
 ];
 
 const msmeProcess = [
-  { step: 1, title: "Download CLNS App", description: "Get started by downloading the CLNS app from Play Store or App Store.", image: "/process/msme-download.jpeg" },
-  { step: 2, title: "Register", description: "Create your MSME account and provide business details.", image: "/process/msme-register.jpeg" },
-  { step: 3, title: "Pay ₹1 Rupee", description: "Access legal consultation for just ₹1 with our One-Rupee initiative.", image: "/process/msme-pay.jpeg" },
-  { step: 4, title: "Connect to Lawyer", description: "Get matched with legal experts specialized in MSME compliance.", image: "/process/msme-connect.jpeg" },
+  {
+    step: 1,
+    title: "Download CLNS App",
+    description: "Get started by downloading the CLNS app from Play Store or App Store.",
+    image: "/process/clients-download.jpeg",
+  },
+  {
+    step: 2,
+    title: "Register",
+    description: "Create your MSME account and provide business details.",
+    image: "/process/clients-register.jpeg",
+  },
+  {
+    step: 3,
+    title: "Pay ₹1 Rupee",
+    description: "Access legal consultation for just ₹1 with our One-Rupee initiative.",
+    image: "/process/clients-pay.jpeg",
+  },
+  {
+    step: 4,
+    title: "Connect to Lawyer",
+    description: "Get matched with legal experts specialized in MSME compliance.",
+    image: "/process/clients-connect.jpeg",
+  },
 ];
 
 const specialFeatures = [
@@ -604,7 +644,7 @@ export default function ServicesPage() {
 
           <RoadmapBanner
             label="Startup Roadmap"
-            src="/roadmaps/startups-msme-roadmap.jpeg"
+            src="/roadmaps/startups-msme-roadmap.jpeg?v=2"
             alt="CLNS roadmap for startups"
           />
         </div>
@@ -647,7 +687,7 @@ export default function ServicesPage() {
 
           <RoadmapBanner
             label="MSME Roadmap"
-            src="/roadmaps/startups-msme-roadmap.jpeg"
+            src="/roadmaps/startups-msme-roadmap.jpeg?v=2"
             alt="CLNS roadmap for MSME businesses"
           />
         </div>

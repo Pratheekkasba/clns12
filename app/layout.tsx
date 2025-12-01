@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/favicon.png" />
@@ -25,7 +25,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="preload" as="image" href="/clns-logo.png" fetchPriority="high" />
-        <link rel="preload" as="image" href="/video-hero/image_for_supremcort.jpg" fetchPriority="high" />
+        <link rel="preload" as="image" href="/video-hero/image_for_supremcort.jpg?v=2" fetchPriority="high" />
       </head>
       <body className="antialiased">
         <ClientLayout>{children}</ClientLayout>

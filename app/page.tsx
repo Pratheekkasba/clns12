@@ -75,7 +75,7 @@ export default function Home() {
       <VideoHero />
       <ServiceCategoriesSection />
       <AboutSection />
-      <section id="partners" className="w-full bg-[#030914] py-32">
+      <section id="partners" className="w-full bg-[#030914] py-32 transition-standard">
         <div className="mx-auto flex max-w-5xl flex-col items-center px-6 text-center text-white">
           <h2 className="mt-4 text-3xl font-semibold md:text-4xl">Trusted by these institutions</h2>
         </div>
@@ -89,7 +89,7 @@ export default function Home() {
         testimonials={marqueeTestimonials}
         className="bg-[#030914] text-white"
       />
-      <section id="download" className="w-full bg-[#020712] px-6 py-28 text-white">
+      <section id="download" className="w-full bg-[#020712] px-6 py-28 text-white transition-standard">
         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
           <HandWrittenTitle
             title="Access CLNS On The Go"
@@ -101,7 +101,7 @@ export default function Home() {
               href="https://play.google.com/store/apps/details?id=com.clns.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-full max-w-xs items-center gap-3 rounded-3xl border border-white/20 bg-white/5 px-5 py-4 text-left shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur transition hover:border-white/40 sm:w-auto"
+              className="flex w-full max-w-xs items-center gap-3 rounded-3xl border border-white/20 bg-white/5 px-5 py-4 text-left shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur transition-all duration-200 ease-out hover:border-white/40 sm:w-auto"
             >
               <Image src="/play-store.jpg" alt="Google Play" width={32} height={32} className="h-8 w-8 object-contain" loading="lazy" />
               <div className="flex flex-col">
@@ -113,7 +113,7 @@ export default function Home() {
               href="https://apps.apple.com/in/app/clns-law-services-made-easy/id6741812022"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-full max-w-xs items-center gap-3 rounded-3xl border border-white/20 bg-white/5 px-5 py-4 text-left shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur transition hover:border-white/40 sm:w-auto"
+              className="flex w-full max-w-xs items-center gap-3 rounded-3xl border border-white/20 bg-white/5 px-5 py-4 text-left shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur transition-all duration-200 ease-out hover:border-white/40 sm:w-auto"
             >
               <Image src="/app-store.jpg" alt="App Store" width={32} height={32} className="h-8 w-8 object-contain" loading="lazy" />
               <div className="flex flex-col">

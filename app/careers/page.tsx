@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Briefcase, Code, Scale, Shield, X, Send } from "lucide-react";
+import { Briefcase, Code, Scale, Shield, X, Send, MessageCircle } from "lucide-react";
 import { Footerdemo } from "@/components/ui/footer-section";
 
 const jobRoles = [
@@ -16,18 +16,18 @@ const jobRoles = [
   },
   {
     id: 2,
-    title: "Technology & Development",
-    icon: Code,
+    title: "Contract Management & Compliance",
+    icon: Scale,
     description:
-      "Build and maintain our legal-tech platform using modern technologies. Develop features that simplify legal workflows and enhance user experience for all stakeholders.",
+      "Review and draft commercial agreements, track key contractual obligations, and support clients in meeting regulatory and policy compliance requirements.",
     gradient: "from-sky-500/20 via-blue-500/10 to-indigo-500/20",
   },
   {
     id: 3,
-    title: "Business Development",
-    icon: Briefcase,
+    title: "Litigation & Dispute Resolution",
+    icon: Scale,
     description:
-      "Drive growth by identifying new opportunities, building client relationships, and expanding CLNS's market presence across legal services and partnerships.",
+      "Assist in case preparation, drafting pleadings, coordinating with counsel, and managing documentation for litigation and alternative dispute resolution matters across courts and tribunals.",
     gradient: "from-purple-500/20 via-pink-500/10 to-rose-500/20",
   },
   {
@@ -39,6 +39,13 @@ const jobRoles = [
     gradient: "from-orange-500/20 via-amber-500/10 to-yellow-500/20",
   },
 ];
+
+const jobFormLinks: Record<number, string> = {
+  1: "https://forms.gle/SsZ619VPE8rihii46", // Legal Research
+  2: "https://forms.gle/uSH68PtiQ4XPSFEv9", // Contract Management & Compliance
+  3: "https://forms.gle/qJsiqouVLMTUdD3F6", // Litigation & Dispute Resolution
+  4: "https://forms.gle/CRHFjCrL5avDDcydA", // Content & Marketing
+};
 
 export default function CareersPage() {
   const [selectedRole, setSelectedRole] = useState<number | null>(null);
@@ -113,6 +120,7 @@ export default function CareersPage() {
           <div className="grid gap-8 md:grid-cols-2">
             {jobRoles.map((job, index) => {
               const Icon = job.icon;
+              const formUrl = jobFormLinks[job.id];
               return (
                 <motion.div
                   key={job.id}
@@ -149,12 +157,23 @@ export default function CareersPage() {
 
                     <p className="mb-8 text-white/60 leading-relaxed">{job.description}</p>
 
-                    <button
-                      onClick={() => handleApply(job.id)}
-                      className="inline-flex items-center justify-center rounded-xl bg-[#2563eb] px-8 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(37,99,235,0.4)] transition-all hover:bg-[#1d4ed8] hover:shadow-[0_15px_40px_rgba(37,99,235,0.5)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2 focus-visible:ring-offset-[#020712]"
-                    >
-                      Apply Now
-                    </button>
+                    {formUrl ? (
+                      <a
+                        href={formUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center rounded-xl bg-[#2563eb] px-8 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(37,99,235,0.4)] transition-all hover:bg-[#1d4ed8] hover:shadow-[0_15px_40px_rgba(37,99,235,0.5)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2 focus-visible:ring-offset-[#020712]"
+                      >
+                        Apply Now
+                      </a>
+                    ) : (
+                      <button
+                        onClick={() => handleApply(job.id)}
+                        className="inline-flex items-center justify-center rounded-xl bg-[#2563eb] px-8 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(37,99,235,0.4)] transition-all hover:bg-[#1d4ed8] hover:shadow-[0_15px_40px_rgba(37,99,235,0.5)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2 focus-visible:ring-offset-[#020712]"
+                      >
+                        Apply Now
+                      </button>
+                    )}
                   </div>
                 </motion.div>
               );

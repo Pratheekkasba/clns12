@@ -28,7 +28,7 @@ export function MarqueePartners({ className }: { className?: string }) {
             key={`${logo.name}-${index}`}
             className="flex min-w-[120px] flex-col items-center gap-2 text-xs tracking-wide text-gray-300"
           >
-            <div className="relative w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:scale-105">
+            <div className="relative w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-200 ease-out hover:scale-105">
               <Image
                 src={logo.src}
                 alt={logo.name}

@@ -18,26 +18,26 @@ function StateEmblem() {
   );
 }
 
-// Optimized animations - reduced delays
+// Optimized animations - shorter durations, only transform and opacity
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.5,
-      ease: [0.4, 0, 0.2, 1],
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
+      duration: 0.25,
+      ease: [0, 0, 0.2, 1], // ease-out
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+    transition: { duration: 0.25, ease: [0, 0, 0.2, 1] }, // ease-out, only transform and opacity
   },
 };
 
@@ -84,7 +84,7 @@ export function VideoHero() {
       {!videoLoaded && (
         <div 
           className="absolute inset-0 h-full w-full bg-cover bg-center"
-          style={{ backgroundImage: 'url(/video-hero/image_for_supremcort.jpg)' }}
+        style={{ backgroundImage: 'url(/video-hero/image_for_supremcort.jpg?v=2)' }}
         />
       )}
       {shouldLoadVideo && (
@@ -97,11 +97,11 @@ export function VideoHero() {
           muted
           playsInline
           preload="metadata"
-          poster="/video-hero/image_for_supremcort.jpg"
+          poster="/video-hero/image_for_supremcort.jpg?v=2"
           onLoadedData={() => setVideoLoaded(true)}
           onCanPlay={() => setVideoLoaded(true)}
           onError={() => setVideoLoaded(false)}
-          style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 0.5s ease-in' }}
+          style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 0.3s ease-out' }}
         />
       )}
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,20,35,0.78)_0%,rgba(5,20,35,0.55)_60%,rgba(5,20,35,0.65)_100%)]" />
@@ -123,7 +123,7 @@ export function VideoHero() {
 
         <motion.div variants={itemVariants} className="space-y-6">
           <h1
-            className="text-[2.6rem] font-bold leading-tight tracking-tight sm:text-5xl md:text-[3.4rem]"
+            className="text-[2.6rem] font-bold leading-normal tracking-tight sm:text-5xl md:text-[3.4rem]"
             style={{ textShadow: "0px 2px 16px rgba(0,0,0,0.4)" }}
           >
             Centralised Legal Network Solutions
@@ -138,10 +138,10 @@ export function VideoHero() {
         
         <motion.div variants={itemVariants} className="mt-6 flex w-full justify-center">
           <a
-            href="https://calendly.com/your-clns-meet"
+            href="https://calendly.com/clns-legal/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-[#2563eb] px-10 py-4 text-base font-semibold text-white shadow-[0_20px_50px_rgba(37,99,235,0.5)] transition-all duration-300 ease-in-out hover:brightness-110 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-[#020817]"
+            className="inline-flex items-center justify-center rounded-full bg-[#2563eb] px-10 py-4 text-base font-semibold text-white shadow-[0_20px_50px_rgba(37,99,235,0.5)] transition-all duration-200 ease-out hover:brightness-110 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-[#020817]"
             aria-label="Schedule a meet with CLNS"
           >
             Schedule a Meet

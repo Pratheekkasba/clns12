@@ -28,7 +28,7 @@ export default function AboutSection() {
 
             <g clipPath={`url(#${clipPathId})`}>
               <image
-                href="/video-hero/image_for_supremcort.jpg"
+                href="/video-hero/image_for_supremcort.jpg?v=2"
                 width="100%"
                 height="100%"
                 preserveAspectRatio="xMidYMid slice"

@@ -126,34 +126,42 @@
     @apply bg-background text-foreground;
   }
   
-  /* Global smooth transitions for interactive elements */
+  /* Global smooth transitions for interactive elements - optimized to 200ms ease-out */
   a, button, input, select, textarea {
     transition-property: color, background-color, border-color, box-shadow, transform, opacity;
-    transition-duration: 0.3s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1); /* ease-out */
   }
   
   /* GPU acceleration for commonly animated elements */
   .transition-gpu {
     transform: translateZ(0);
     backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+  
+  /* Standardized transition utility - use for major sections */
+  .transition-standard {
+    transition-property: transform, opacity;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1); /* ease-out */
   }
 }
 
-/* Smooth easing utility classes */
+/* Optimized easing utility classes - standardized to ease-out */
 .ease-smooth {
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1); /* ease-out */
 }
 
 .ease-smooth-in {
-  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1); /* ease-out */
 }
 
 .ease-smooth-out {
-  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1); /* ease-out */
 }
 
-/* Global fade-in animation on page load */
+/* Optimized fade-in animation - shorter duration */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -164,19 +172,19 @@
 }
 
 .page-fade-in {
-  animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: fadeIn 200ms cubic-bezier(0, 0, 0.2, 1) forwards;
 }
 
-/* Smooth page transitions */
+/* Optimized page transitions - using only transform and opacity */
 .page-transition-enter {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(8px);
 }
 
 .page-transition-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1), transform 200ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .page-transition-exit {
@@ -186,8 +194,24 @@
 
 .page-transition-exit-active {
   opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.2s cubic-bezier(0.4, 0, 1, 1), transform 0.2s cubic-bezier(0.4, 0, 1, 1);
+  transform: translateY(-8px);
+  transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1), transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Viewport-based section reveal - optimized */
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-reveal {
+  animation: sectionReveal 250ms cubic-bezier(0, 0, 0.2, 1) forwards;
 }
 
 

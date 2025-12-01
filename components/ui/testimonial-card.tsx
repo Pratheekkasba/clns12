@@ -23,7 +23,7 @@ export function TestimonialCard({ author, text, href, className }: TestimonialCa
     <Card
       {...(href ? { href } : {})}
       className={cn(
-        "flex max-w-[320px] flex-col rounded-lg p-4 text-start transition-all duration-300 sm:p-6",
+        "flex max-w-[320px] flex-col rounded-lg p-4 text-start transition-all duration-200 ease-out sm:p-6",
         // Light mode: darker frosted glass style
         "bg-slate-800/40 backdrop-blur-xl border border-slate-700/30",
         "text-white",

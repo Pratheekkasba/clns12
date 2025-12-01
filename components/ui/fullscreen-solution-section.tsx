@@ -178,7 +178,7 @@ export function FullscreenSolutionSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
+            transition={{ duration: 0.25, ease: [0, 0, 0.2, 1] }}
             className="space-y-10"
           >
             <div className="text-center">
@@ -194,8 +194,8 @@ export function FullscreenSolutionSection() {
                       key={feature.title}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="group rounded-2xl border border-white/10 bg-white/5/10 p-5 text-left shadow-[0_0_25px_rgba(255,255,255,0.05)] backdrop-blur-lg transition-all duration-300 hover:scale-[1.02] hover:border-white/20 hover:bg-white/10"
+                      transition={{ duration: 0.2, ease: [0, 0, 0.2, 1] }}
+                      className="group rounded-2xl border border-white/10 bg-white/5/10 p-5 text-left shadow-[0_0_25px_rgba(255,255,255,0.05)] backdrop-blur-lg transition-all duration-200 ease-out hover:scale-[1.02] hover:border-white/20 hover:bg-white/10"
                     >
                       <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
                       <p className="mt-2 text-sm leading-relaxed text-white/60">{feature.description}</p>

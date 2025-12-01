@@ -123,13 +123,13 @@ const slideInRight = {
 };
 
 const transitionFast = {
-  duration: 0.5,
-  ease: [0.4, 0, 0.2, 1] as const, // easeOut
+  duration: 0.2,
+  ease: [0, 0, 0.2, 1] as const, // ease-out, optimized
 };
 
 const transitionMedium = {
-  duration: 0.6,
-  ease: [0.4, 0, 0.2, 1] as const, // easeOut
+  duration: 0.25,
+  ease: [0, 0, 0.2, 1] as const, // ease-out, optimized
 };
 
 function useCountUp(target: number, duration = 1200) {
@@ -228,21 +228,17 @@ export default function AboutPage() {
             style={{ willChange: "transform, opacity" }}
             className="flex-1 space-y-8 transform-gpu"
           >
-            {/* Glowing Vertical Accent Line */}
-            <div className="relative">
-              <div className="absolute -left-6 top-0 h-full w-px bg-gradient-to-b from-teal-400/20 via-teal-300/30 to-transparent" />
-              <motion.p
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                variants={fadeIn}
-                transition={{ ...transitionFast, delay: 0.1 }}
-                className="inline-flex items-center text-xs uppercase tracking-[0.4em] text-teal-200"
-              >
-                <span className="mr-3 h-px w-12 bg-teal-200/70" />
-                ABOUT CLNS
-              </motion.p>
-            </div>
+            {/* About CLNS Label */}
+            <motion.p
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              transition={{ ...transitionFast, delay: 0.1 }}
+              className="text-xs uppercase tracking-[0.4em] text-teal-200"
+            >
+              ABOUT CLNS
+            </motion.p>
 
             <motion.h2
               initial="initial"
@@ -301,7 +297,7 @@ export default function AboutPage() {
             style={{ willChange: "transform, opacity" }}
             className="flex flex-1 justify-center lg:sticky lg:top-24 transform-gpu"
           >
-            <div className="group relative w-full max-w-md rounded-[36px] border border-white/10 bg-white/5 p-10 shadow-[0_50px_120px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-teal-400/30 hover:shadow-[0_60px_150px_rgba(34,211,238,0.25)] transform-gpu" style={{ backfaceVisibility: "hidden" }}>
+            <div className="group relative w-full max-w-md rounded-[36px] border border-white/10 bg-white/5 p-10 shadow-[0_50px_120px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all duration-200 ease-out hover:-translate-y-1 hover:border-teal-400/30 hover:shadow-[0_60px_150px_rgba(34,211,238,0.25)] transform-gpu" style={{ backfaceVisibility: "hidden" }}>
               {/* Gradient Border */}
               <div className="absolute inset-0 rounded-[36px] bg-gradient-to-br from-teal-500/20 via-cyan-500/10 to-blue-500/20 opacity-0 transition-opacity group-hover:opacity-100" />
               
@@ -527,7 +523,7 @@ function PersonaCard({
       transition={{ ...transitionFast, delay: index * 0.08 }}
       whileHover={{ y: -8, scale: 1.02 }}
       style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
-      className="group relative flex flex-col h-full rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8 lg:p-6 xl:p-8 shadow-[0_40px_120px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-teal-400/40 hover:shadow-[0_60px_150px_rgba(34,211,238,0.3)] transform-gpu"
+      className="group relative flex flex-col h-full rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8 lg:p-6 xl:p-8 shadow-[0_40px_120px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all duration-200 ease-out hover:border-teal-400/40 hover:shadow-[0_60px_150px_rgba(34,211,238,0.3)] transform-gpu"
     >
       {/* Moving Gradient Background - Optimized */}
       <motion.div

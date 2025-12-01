@@ -61,9 +61,15 @@ export const NavBar = memo(function NavBar({ items, className }: NavBarProps) {
       )}
     >
       <div ref={containerRef} className="relative mx-auto flex w-full max-w-4xl items-center gap-2 sm:gap-3 rounded-2xl border border-white/60 px-2 sm:px-4 py-2 sm:py-2.5 shadow-[0_15px_40px_rgba(15,23,42,0.08)] backdrop-blur-[12px] transition-colors dark:border-white/10 dark:shadow-[0_20px_45px_rgba(2,6,23,0.65)]" style={{ clipPath: "inset(0 round 1rem)" }}>
-        <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-          <Image src="/clns-logo.png" alt="CLNS logo" width={40} height={40} className="h-8 w-8 sm:h-10 sm:w-10 object-contain" />
-          <span className="text-base sm:text-lg font-semibold text-slate-700 dark:text-white">CLNS</span>
+        <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+          <Image 
+            src="/clns-logo.png" 
+            alt="CLNS logo" 
+            width={24} 
+            height={24} 
+            className="h-5 w-5 sm:h-6 sm:w-6 object-contain" 
+          />
+          <span className="text-sm sm:text-base font-semibold text-slate-700 dark:text-white">CLNS</span>
         </div>
 
         <div
@@ -85,7 +91,7 @@ export const NavBar = memo(function NavBar({ items, className }: NavBarProps) {
                 prefetch={true}
                 onMouseEnter={() => setHoveredTab(item.name)}
                 className={cn(
-                  "relative z-10 flex items-center justify-center rounded-full px-2 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold transition-all duration-200",
+                  "relative z-10 flex items-center justify-center rounded-full px-2 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold transition-colors duration-200 ease-out",
                   "text-slate-600 hover:text-blue-600 dark:text-white/70 dark:hover:text-cyan-100",
                   isHighlighted && "text-blue-600 dark:text-cyan-100",
                   "overflow-hidden"
@@ -97,7 +103,7 @@ export const NavBar = memo(function NavBar({ items, className }: NavBarProps) {
                     layoutId="tubelight-pill"
                     className="absolute inset-0 -z-10 rounded-full bg-blue-500/15 shadow-[0_0_20px_rgba(59,130,246,0.5),inset_0_0_20px_rgba(59,130,246,0.1)] dark:bg-cyan-400/15 dark:shadow-[0_0_25px_rgba(34,211,238,0.6),inset_0_0_20px_rgba(34,211,238,0.1)]"
                     style={{ borderRadius: "9999px" }}
-                    transition={{ type: "spring", stiffness: 300, damping: 28 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 30, duration: 0.2 }}
                   />
                 )}
                 <span className={cn("hidden sm:inline relative z-10", isMobile && "hidden")}>
@@ -113,8 +119,9 @@ export const NavBar = memo(function NavBar({ items, className }: NavBarProps) {
                     style={{ borderRadius: "9999px" }}
                     transition={{ 
                       type: "spring", 
-                      stiffness: 400, 
-                      damping: 30,
+                      stiffness: 500, 
+                      damping: 35,
+                      duration: 0.2,
                     }}
                   />
                 )}

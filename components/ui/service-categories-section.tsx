@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   Building2,
   GraduationCap,
@@ -72,8 +73,12 @@ export function ServiceCategoriesSection({
         )}
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {serviceCategories.map((category) => (
-            <ServiceCategoryCard key={category.title} category={category} />
+          {serviceCategories.map((category, index) => (
+            <ServiceCategoryCard 
+              key={category.title} 
+              category={category} 
+              index={index}
+            />
           ))}
         </div>
       </div>
@@ -83,37 +88,58 @@ export function ServiceCategoriesSection({
 
 function ServiceCategoryCard({
   category,
+  index,
 }: {
   category: (typeof serviceCategories)[0];
+  index: number;
 }) {
   const Icon = category.icon;
 
   return (
-    <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-10 shadow-[0_40px_120px_rgba(0,0,0,0.5)] backdrop-blur-xl">
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{
+        duration: 0.3,
+        ease: [0, 0, 0.2, 1], // ease-out
+        delay: index * 0.08, // Stagger: 50-100ms per card
+      }}
+      whileHover={{
+        y: -8,
+        scale: 1.05,
+        transition: { duration: 0.2, ease: [0, 0, 0.2, 1] },
+      }}
+      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-10 shadow-[0_40px_120px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-shadow duration-200 ease-out hover:shadow-xl hover:shadow-emerald-500/20"
+    >
       {/* Gradient Background */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-70`} />
+      <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-70 transition-opacity duration-200 ease-out group-hover:opacity-90`} />
 
-      {/* Gradient Border */}
-      <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${category.borderGradient} opacity-0`} />
+      {/* Gradient Border - Enhanced on hover */}
+      <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${category.borderGradient} opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100`} />
 
       <div className="relative z-10 flex flex-1 flex-col text-center">
         <div className="mb-6 flex justify-center">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
-            <Icon className="h-8 w-8 text-teal-300" />
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur transition-transform duration-200 ease-out group-hover:scale-110">
+            <Icon className="h-8 w-8 text-teal-300 transition-colors duration-200 ease-out group-hover:text-teal-200" />
           </div>
         </div>
-        <h3 className="mb-3 text-2xl font-bold text-white">{category.title}</h3>
-        <p className="mb-6 flex-1 text-white/70">{category.description}</p>
+        <h3 className="mb-3 text-2xl font-bold text-white transition-colors duration-200 ease-out group-hover:text-teal-100">
+          {category.title}
+        </h3>
+        <p className="mb-6 flex-1 text-white/70 transition-colors duration-200 ease-out group-hover:text-white/80">
+          {category.description}
+        </p>
         
-        {/* Explore Button */}
+        {/* Explore Button - Enhanced hover */}
         <Link
           href={`/services#${category.hash}`}
-          className="mt-auto inline-flex items-center justify-center rounded-full border border-teal-500/50 bg-transparent px-6 py-2.5 text-sm font-medium text-teal-400 transition-all duration-300 hover:border-teal-400 hover:bg-teal-500/10 hover:text-teal-300"
+          className="mt-auto inline-flex items-center justify-center rounded-full border border-teal-500/50 bg-transparent px-6 py-2.5 text-sm font-medium text-teal-400 transition-all duration-200 ease-out hover:border-teal-400 hover:bg-teal-500/20 hover:text-teal-300 hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]"
         >
           Explore
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

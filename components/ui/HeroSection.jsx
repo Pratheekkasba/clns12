@@ -112,7 +112,7 @@ export default function HeroSection() {
           </div>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <button className="rounded-full bg-white/90 px-6 py-3 text-base font-semibold text-[#003f73] shadow-[0_0_25px_rgba(255,255,255,0.35)] transition duration-300 hover:bg-white hover:shadow-[0_0_35px_rgba(0,191,255,0.45)]">
+            <button className="rounded-full bg-white/90 px-6 py-3 text-base font-semibold text-[#003f73] shadow-[0_0_25px_rgba(255,255,255,0.35)] transition duration-200 ease-out hover:bg-white hover:shadow-[0_0_35px_rgba(0,191,255,0.45)]">
               Book Consultation Starts at ₹1
             </button>
             <button className="rounded-full border border-white/30 px-6 py-3 text-base font-semibold text-white backdrop-blur hover:border-white hover:bg-white/10">
@@ -131,9 +131,9 @@ export default function HeroSection() {
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="group flex flex-col items-center rounded-2xl border border-white/5 bg-white/[0.04] px-4 py-5 text-center transition duration-300 hover:bg-white/[0.08]"
+                  className="group flex flex-col items-center rounded-2xl border border-white/5 bg-white/[0.04] px-4 py-5 text-center transition duration-200 ease-out hover:bg-white/[0.08]"
                 >
-                  <div className="mb-3 text-teal-200/90 transition duration-300 group-hover:text-white">
+                  <div className="mb-3 text-teal-200/90 transition duration-200 ease-out group-hover:text-white">
                     {icons[stat.icon]}
                   </div>
                   <p className="text-2xl font-bold">{stat.value}</p>

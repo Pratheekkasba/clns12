@@ -74,7 +74,7 @@ export function FullScreenScrollFX({ sections, className }: FullScreenScrollFXPr
 
               <div
                 className={cn(
-                  "text-center transition-all duration-700",
+                  "text-center transition-all duration-250 ease-out",
                   isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
               >
@@ -85,7 +85,7 @@ export function FullScreenScrollFX({ sections, className }: FullScreenScrollFXPr
 
               <div
                 className={cn(
-                  "rounded-[32px] bg-gradient-to-b from-black/30 via-black/20 to-transparent p-6 shadow-[0_30px_80px_rgba(0,0,0,0.35)] transition-all duration-700",
+                  "rounded-[32px] bg-gradient-to-b from-black/30 via-black/20 to-transparent p-6 shadow-[0_30px_80px_rgba(0,0,0,0.35)] transition-all duration-250 ease-out",
                   isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
               >
