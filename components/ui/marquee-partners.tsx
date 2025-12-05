@@ -7,7 +7,6 @@ const logos = [
   { name: "Corporate Legal", src: "/partners/corporate-legal.jpeg" },
   { name: "Policy Think Tanks", src: "/partners/policy-thinktank.jpeg" },
   { name: "United Nations", src: "/partners/united-nations.jpeg" },
-  { name: "International Bar Council", src: "/partners/international-bar-council.jpeg" },
   { name: "Federation of Indian Corporate Lawyer", src: "/partners/ficl.jpeg" },
   { name: "Woxen University", src: "/partners/woxen-university.jpeg" },
 ];

@@ -305,7 +305,7 @@ const studentProcess = [
 const advocateProcess = [
   { step: 1, title: "Download CLNS App", description: "Get started by downloading the CLNS app from Play Store or App Store.", image: "/process/advocates/01-download-app.jpeg" },
   { step: 2, title: "Register as Advocate", description: "Create your advocate profile and verify your credentials.", image: "/process/advocates/02-register-advocate.jpeg" },
-  { step: 3, title: "Get Clients", description: "Connect with clients seeking legal services through our platform.", image: "/process/advocates/03-get-clients.jpeg" },
+  { step: 3, title: "Create a verified profile for your clients", description: "Connect with clients seeking legal services through our platform.", image: "/process/advocates/03-get-clients.jpeg" },
 ];
 
 const startupProcess = [

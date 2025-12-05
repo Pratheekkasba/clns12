@@ -2,7 +2,25 @@
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { VideoHero } from "@/components/ui/video-hero";
+
+// Lazy load VideoHero for better initial page load
+const VideoHero = dynamic(() => import("@/components/ui/video-hero").then((mod) => ({ default: mod.VideoHero })), {
+  loading: () => (
+    <section className="relative isolate flex min-h-[92vh] w-full items-center justify-center overflow-hidden text-white bg-[#020817]">
+      <div className="absolute inset-0 flex items-center justify-center bg-black/70">
+        <Image
+          src="/video-hero/CLNS-removebg-preview123.png"
+          alt="CLNS loading"
+          width={400}
+          height={400}
+          priority
+          className="object-contain p-8 sm:p-16"
+        />
+      </div>
+    </section>
+  ),
+  ssr: false,
+});
 
 // Lazy load below-the-fold components
 const ServiceCategoriesSection = dynamic(

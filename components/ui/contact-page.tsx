@@ -19,7 +19,6 @@ import { Button, ButtonProps } from "@/components/ui/button";
 
 const APP_EMAIL = "office@clns.in";
 const APP_PHONE = "8465958825";
-const APP_PHONE_2 = "8465958825";
 
 // Hyderabad - CLNS Offices
 const hyderabadOffices = [
@@ -251,26 +250,14 @@ export function ContactPage() {
 
 
           <Box icon={Phone} title="Phone" description="Available Mon–Fri, 9 AM–7 PM." className="md:col-span-1">
-            <div className="space-y-3">
-              <div className="flex items-center gap-x-2">
-                <a
-                  href={`tel:${APP_PHONE}`}
-                  className="font-mono text-base font-medium text-white/90 hover:text-teal-300 hover:underline transition-colors"
-                >
-                  {APP_PHONE}
-                </a>
-                <CopyButton className="size-6" test={APP_PHONE} />
-              </div>
-
-              <div className="flex items-center gap-x-2">
-                <a
-                  href={`tel:${APP_PHONE_2}`}
-                  className="font-mono text-base font-medium text-white/90 hover:text-teal-300 hover:underline transition-colors"
-                >
-                  {APP_PHONE_2}
-                </a>
-                <CopyButton className="size-6" test={APP_PHONE_2} />
-              </div>
+            <div className="flex items-center gap-x-2">
+              <a
+                href={`tel:${APP_PHONE}`}
+                className="font-mono text-base font-medium text-white/90 hover:text-teal-300 hover:underline transition-colors"
+              >
+                {APP_PHONE}
+              </a>
+              <CopyButton className="size-6" test={APP_PHONE} />
             </div>
           </Box>
         </div>

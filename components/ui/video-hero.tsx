@@ -1,91 +1,107 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useEffect, useState, useCallback, memo } from "react";
+import Image from "next/image";
 
 const HERO_VIDEO_SRC =
   "/video-hero/motion2Fast_Ultrarealistic_cinematic_video_of_a_modern_Indian__0.mp4";
+const HERO_POSTER_SRC = "/video-hero/CLNS-removebg-preview123.png";
 
-function StateEmblem() {
+const StateEmblem = memo(function StateEmblem() {
   return (
-    <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-[#f5c351]/40 bg-[#f5c351]/10 shadow-[0_0_35px_rgba(245,195,81,0.45)]">
-      <svg viewBox="0 0 64 64" className="h-12 w-12 text-[#f5c351]" fill="currentColor">
+    <div 
+      className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-[#f5c351]/40 bg-[#f5c351]/10 shadow-[0_0_35px_rgba(245,195,81,0.45)]"
+      style={{ willChange: "transform" }}
+    >
+      <svg viewBox="0 0 64 64" className="h-12 w-12 text-[#f5c351]" fill="currentColor" aria-hidden="true">
         <path d="M28 10h8l4 12v12h-4v12l4 6h-16l4-6V34h-4V22l4-12z" opacity="0.85" />
         <path d="M22 22h20" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" />
         <path d="M20 46h24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       </svg>
     </div>
   );
-}
+});
 
-// Optimized animations - shorter durations, only transform and opacity
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.25,
-      ease: [0, 0, 0.2, 1], // ease-out
-      staggerChildren: 0.08,
-      delayChildren: 0.05,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 15 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.25, ease: [0, 0, 0.2, 1] }, // ease-out, only transform and opacity
-  },
-};
+// CSS-based animations for better performance (no JS overhead)
+const heroStyles = `
+  @keyframes heroFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes heroSlideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-container {
+    animation: heroFadeIn 0.15s ease-out forwards;
+  }
+  .hero-item-1 {
+    animation: heroSlideUp 0.15s ease-out 0.02s forwards;
+    opacity: 0;
+  }
+  .hero-item-2 {
+    animation: heroSlideUp 0.15s ease-out 0.06s forwards;
+    opacity: 0;
+  }
+  .hero-item-3 {
+    animation: heroSlideUp 0.15s ease-out 0.1s forwards;
+    opacity: 0;
+  }
+  .hero-item-4 {
+    animation: heroSlideUp 0.15s ease-out 0.14s forwards;
+    opacity: 0;
+  }
+`;
 
 export function VideoHero() {
   const heroRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [showPoster, setShowPoster] = useState(true);
 
   useEffect(() => {
-    // Use intersection observer for better performance
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setShouldLoadVideo(true);
-            // Start loading video when visible
-            if (videoRef.current && videoRef.current.readyState < 2) {
-              videoRef.current.load();
-            }
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "50px" }
-    );
+    // Load video immediately - hero is always visible
+    setShouldLoadVideo(true);
+  }, []);
 
-    if (heroRef.current) {
-      observer.observe(heroRef.current);
-    }
+  const handleVideoReady = useCallback(() => {
+    setVideoLoaded(true);
+    // Faster transition
+    requestAnimationFrame(() => {
+      setTimeout(() => setShowPoster(false), 50);
+    });
+  }, []);
 
-    return () => {
-      if (heroRef.current) {
-        observer.unobserve(heroRef.current);
-      }
-    };
+  const handleVideoError = useCallback(() => {
+    setVideoLoaded(false);
+    setShowPoster(true);
   }, []);
 
   return (
-    <section
-      ref={heroRef}
-      className="relative isolate flex min-h-[92vh] w-full items-center justify-center overflow-hidden bg-[#020817] text-white"
-    >
-      {/* Poster image fallback */}
-      {!videoLoaded && (
-        <div 
-          className="absolute inset-0 h-full w-full bg-cover bg-center"
-        style={{ backgroundImage: 'url(/video-hero/image_for_supremcort.jpg?v=2)' }}
-        />
+    <>
+      <style dangerouslySetInnerHTML={{ __html: heroStyles }} />
+      <section
+        ref={heroRef}
+        className="relative isolate flex min-h-[92vh] w-full items-center justify-center overflow-hidden text-white"
+        style={{
+          background: 'linear-gradient(180deg, #020817 0%, #051423 30%, #0a1f3a 60%, #051423 100%)',
+        }}
+      >
+      {showPoster && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/70">
+          <Image
+            src={HERO_POSTER_SRC}
+            alt="CLNS loading graphic"
+            fill
+            priority
+            sizes="100vw"
+            className="object-contain p-8 sm:p-16"
+            quality={80}
+            loading="eager"
+            fetchPriority="high"
+          />
+        </div>
       )}
       {shouldLoadVideo && (
         <video
@@ -96,32 +112,30 @@ export function VideoHero() {
           loop
           muted
           playsInline
-          preload="metadata"
-          poster="/video-hero/image_for_supremcort.jpg?v=2"
-          onLoadedData={() => setVideoLoaded(true)}
-          onCanPlay={() => setVideoLoaded(true)}
-          onError={() => setVideoLoaded(false)}
-          style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 0.3s ease-out' }}
+          preload="auto"
+          onLoadedData={handleVideoReady}
+          onCanPlay={handleVideoReady}
+          onError={handleVideoError}
+          style={{ 
+            opacity: videoLoaded ? 1 : 0, 
+            transition: "opacity 0.15s ease-out",
+            willChange: videoLoaded ? "auto" : "opacity"
+          }}
         />
       )}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,20,35,0.78)_0%,rgba(5,20,35,0.55)_60%,rgba(5,20,35,0.65)_100%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(37,99,235,0.35),transparent_45%)]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,rgba(2,8,23,0)_0%,rgba(5,20,35,0.65)_100%)]" />
+      {/* Optimized: Reduced gradient overlays for better performance */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(37,99,235,0.25),transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,transparent_0%,rgba(2,8,23,0.8)_100%)] pointer-events-none" />
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="relative z-10 mx-auto flex max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center sm:px-6 lg:px-8"
-      >
-        <motion.div variants={itemVariants}>
+      <div className="hero-container relative z-10 mx-auto flex max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center sm:px-6 lg:px-8">
+        <div className="hero-item-1">
           <StateEmblem />
-        </motion.div>
-        <motion.p variants={itemVariants} className="text-base uppercase tracking-[0.4em] text-white/70">
+        </div>
+        <p className="hero-item-2 text-base uppercase tracking-[0.4em] text-white/70">
           A next-generation legal ecosystem.
-        </motion.p>
+        </p>
 
-        <motion.div variants={itemVariants} className="space-y-6">
+        <div className="hero-item-3 space-y-6">
           <h1
             className="text-[2.6rem] font-bold leading-normal tracking-tight sm:text-5xl md:text-[3.4rem]"
             style={{ textShadow: "0px 2px 16px rgba(0,0,0,0.4)" }}
@@ -134,9 +148,9 @@ export function VideoHero() {
           >
             Fast, transparent, tech-enabled legal services for clients, students & advocates & officials.
           </p>
-        </motion.div>
+        </div>
         
-        <motion.div variants={itemVariants} className="mt-6 flex w-full justify-center">
+        <div className="hero-item-4 mt-6 flex w-full justify-center">
           <a
             href="https://calendly.com/clns-legal/30min"
             target="_blank"
@@ -146,9 +160,10 @@ export function VideoHero() {
           >
             Schedule a Meet
           </a>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
+    </>
   );
 }
 
